@@ -1,7 +1,11 @@
 <html>
 <body style="background-color:#242424;margin:0px;font-size:12px;font-family:'Lato','sans-serif'">
-<div class=".nav" style="background-color:rgb(15,15,15);margin:0px">
-	<center><img src="/static/spectre/wordmark_white.png" style="height:42px"></center>
+<div class=".nav" style="background-color:rgb(15,15,15);margin:0px;vertical-align:middle;height:42px">
+	<center><img src="/static/spectre/wordmark_white.png" style="height:42px;display:inline"></img>
+	{% for item in menu %}
+	<a href="/page/{{item.page}}" style="display:inline-block;vertical-align:middle;height:42px;color:#cccccc">{{item.title}}</a>
+
+	{% endfor %}</center>
 </div>
 <div style="background-color:#62176f;height:3px;width:100%"></div>
 <div style="margin:10%;margin-top:10px;margin-bottom:0px;background-color:#62176f;height:30px;color:#cccccc;text-transform:uppercase;padding-top:12px;padding-left:10px" >{{ title }}</div>
