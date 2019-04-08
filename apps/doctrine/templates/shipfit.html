@@ -1,0 +1,26 @@
+<div id="shipfitting">
+	<div id="ship"><img src="http://imageserver.eveonline.com/Type/{{ship.ship.0}}_32.png" />{{ship.ship.1}}</div><br><br>
+	Highslot:
+	{% for mod in ship.high %}
+	<div class="high"><img src="http://imageserver.eveonline.com/Type/{{mod.0}}_32.png">{{mod.1}}</div>
+	{% endfor %}
+	<br><br>Midslot:
+        {% for mod in ship.mid %}
+        <div class="mid"><img src="http://imageserver.eveonline.com/Type/{{mod.0}}_32.png">{{mod.1}}</div>
+        {% endfor %}
+	<br><br>Lowslot:
+        {% for mod in ship.low %}
+        <div class="low"><img src="http://imageserver.eveonline.com/Type/{{mod.0}}_32.png">{{mod.1}}</div>
+        {% endfor %}
+	<br><br>Rigs:
+        {% for mod in ship.rig %}
+        <div id="low"><img src="http://imageserver.eveonline.com/Type/{{mod.0}}_32.png" />{{mod.1}}</div>
+        {% endfor %}
+	<br><br>Other:
+        {% for mod in ship.cargo %}
+        <div id="low"><img src="http://imageserver.eveonline.com/Type/{{mod.0}}_32.png" />{{mod.1}}</div>
+        {% endfor %}
+
+
+
+</div>
