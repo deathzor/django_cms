@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class DoctrineConfig(AppConfig):
-    name = 'doctrine'
+    name = 'modules.eveonline.extensions.doctrine'
