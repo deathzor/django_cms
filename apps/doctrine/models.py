@@ -16,7 +16,11 @@ class fitting(models.Model):
         except KeyError as e:
             return [0,mod]
     def __str__(self):
-        return self.parseEFT()['name']
+        name = self.parseEFT()['name']
+        if (name != ""):
+            return name
+        return str(self.id)+" Invalid"
+            
 
     def parseEFT(self):
         fit = {'name':'','ship':'','high':[],'mid':[],'low':[],'rig':[],'cargo':[]}
@@ -28,7 +32,7 @@ class fitting(models.Model):
                 try:
                     fit['name'] = line[1:-1].split(',')[1].strip();
                 except IndexError as e:
-                    fit['name'] = "Invalid";
+                    fit['name'] = str(self.id)+" Invalid";
                     return fit;
                 fit['ship'] = self.mod_array(line[1:-1].split(',')[0].strip());
             else:
