@@ -4,12 +4,19 @@ import os
 # Create your models here.
 class doctrine(models.Model):
     name = models.CharField(max_length=300)
+    def __str__(self):
+        return self.name;
 
 class fitting(models.Model):
-    doctrine = models.ForeignKey('doctrine', on_delete=models.SET_NULL, blank=True, null=True)
+    doctrine = models.ManyToManyField('doctrine',blank=True)
     EFT = models.TextField(max_length=9000)
     def mod_array(self,mod):
-        return [pickle.load(open(os.path.dirname(os.path.realpath(__file__))+'/nametoid.pickle','rb'))[mod],mod]
+        try:
+            return [pickle.load(open(os.path.dirname(os.path.realpath(__file__))+'/nametoid.pickle','rb'))[mod],mod]
+        except KeyError as e:
+            return [0,mod]
+    def __str__(self):
+        return self.parseEFT()['name']
 
     def parseEFT(self):
         fit = {'name':'','ship':'','high':[],'mid':[],'low':[],'rig':[],'cargo':[]}
@@ -18,7 +25,11 @@ class fitting(models.Model):
         item = ['low','mid','high','rig','cargo'];
         for line in (self.EFT.splitlines()):
             if (i == 0):
-                fit['name'] = line[1:-1].split(',')[1].strip();
+                try:
+                    fit['name'] = line[1:-1].split(',')[1].strip();
+                except IndexError as e:
+                    fit['name'] = "Invalid";
+                    return fit;
                 fit['ship'] = self.mod_array(line[1:-1].split(',')[0].strip());
             else:
                 if (line == "" and y != 4):
